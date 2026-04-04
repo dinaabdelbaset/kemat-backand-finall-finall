@@ -9,7 +9,11 @@ class DestinationController extends Controller
     public function index(Request $request)
     {
         $destinations = \App\Models\Destination::all()->map(function ($dest) {
-            $dest->image = url($dest->image); // Ensure full URL
+            if ($dest->image && !str_starts_with($dest->image, 'http')) {
+                $dest->image = url($dest->image);
+            } elseif (!$dest->image) {
+                $dest->image = null;
+            }
             return $dest;
         });
         return response()->json($destinations);
@@ -19,7 +23,11 @@ class DestinationController extends Controller
     {
         $dest = \App\Models\Destination::find($id);
         if ($dest) {
-            $dest->image = url($dest->image);
+            if ($dest->image && !str_starts_with($dest->image, 'http')) {
+                $dest->image = url($dest->image);
+            } elseif (!$dest->image) {
+                $dest->image = null;
+            }
             return response()->json($dest);
         }
         return response()->json(['error' => 'Not found'], 404);
