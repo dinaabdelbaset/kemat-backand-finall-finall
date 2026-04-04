@@ -21,6 +21,11 @@ if ! grep -q "GEMINI_API_KEY" .env; then
     echo "GEMINI_API_KEY=AIzaSyCviRVbw8Tg9KXE6v2-j5A0aGZX0oHMpA4" >> .env
 fi
 
+# Clear caches so the new APP_URL is picked up instead of the old cached one
+php artisan optimize:clear
+php artisan config:clear
+php artisan cache:clear
+
 # Run migrations and seeding
 echo "Running migrations..."
 php artisan migrate:fresh --seed --force
