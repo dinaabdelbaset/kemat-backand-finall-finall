@@ -47,12 +47,12 @@ class HotelSeeder extends Seeder
         ];
 
         $images = [
-            'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80',
-            'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=80',
-            'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=800&q=80',
-            'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=800&q=80',
-            'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=800&q=80',
-            'https://images.unsplash.com/photo-1445019980597-93fa8acb246c?auto=format&fit=crop&w=800&q=80'
+            'https://images.unsplash.com/photo-1534008897995-17a9d4999b1d?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1522066898748-18e3100e0004?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1574675681023-4556ca6bf414?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1588616149176-8f2c3eb76ad4?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1581452936780-fbcdaebae183?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1583483955615-5eab38cdae78?auto=format&fit=crop&w=800&q=80'
         ];
 
         // Placeholder 3D model for AR view
@@ -74,7 +74,7 @@ class HotelSeeder extends Seeder
                 
                 $hotelImage = $images[$index % count($images)];
                 
-                // Set specific picture for Om Kolthoom Hotel (Using a reliable hotlink-friendly news URL)
+                // Set specific picture for Om Kolthoom Hotel (Real Image)
                 if ($hotelName === 'Om Kolthoom Hotel') {
                     $hotelImage = 'https://vid.alarabiya.net/images/2021/04/09/b87e1451-b844-48ac-a796-7a701dff2acb/b87e1451-b844-48ac-a796-7a701dff2acb_16x9_1200x676.jpg';
                 }

@@ -20,7 +20,7 @@ class DestinationController extends Controller
                 'price' => 1500,
                 'rating' => 4.9,
                 'category' => 'Historic',
-                'image' => $base . '/images/home/trending-destinations/download%20(1)c.ario.png',
+                'image' => $base . '/api/kamet-images/dest_cairo',
             ],
             [
                 'id' => 2,
@@ -31,7 +31,7 @@ class DestinationController extends Controller
                 'price' => 1200,
                 'rating' => 4.8,
                 'category' => 'Culture',
-                'image' => $base . '/images/home/trending-destinations/luxor.png',
+                'image' => $base . '/api/kamet-images/dest_luxor',
             ],
             [
                 'id' => 3,
@@ -42,7 +42,7 @@ class DestinationController extends Controller
                 'price' => 1100,
                 'rating' => 4.7,
                 'category' => 'Culture',
-                'image' => $base . '/images/home/trending-destinations/aswan.png',
+                'image' => $base . '/api/kamet-images/dest_aswan',
             ],
             [
                 'id' => 4,
@@ -53,7 +53,7 @@ class DestinationController extends Controller
                 'price' => 2500,
                 'rating' => 4.9,
                 'category' => 'Beach',
-                'image' => $base . '/images/home/trending-destinations/foto_egipet_sharm_el_shejh_foto_1.jpg-1024x687.png',
+                'image' => $base . '/api/kamet-images/dest_sharm',
             ],
             [
                 'id' => 5,
@@ -64,7 +64,7 @@ class DestinationController extends Controller
                 'price' => 1800,
                 'rating' => 4.8,
                 'category' => 'Adventure',
-                'image' => $base . '/images/home/trending-destinations/Hurghada_R03.jpg',
+                'image' => $base . '/api/kamet-images/dest_hurghada',
             ],
             [
                 'id' => 6,
@@ -75,7 +75,7 @@ class DestinationController extends Controller
                 'price' => 1400,
                 'rating' => 4.6,
                 'category' => 'Historic',
-                'image' => $base . '/images/home/trending-destinations/Alx.png',
+                'image' => $base . '/api/kamet-images/dest_alexandria',
             ],
             [
                 'id' => 7,
@@ -86,7 +86,7 @@ class DestinationController extends Controller
                 'price' => 900,
                 'rating' => 4.9,
                 'category' => 'Nature',
-                'image' => $base . '/images/home/trending-destinations/marsallm.png',
+                'image' => $base . '/api/kamet-images/dest_marsa_alam',
             ],
             [
                 'id' => 8,
@@ -97,7 +97,7 @@ class DestinationController extends Controller
                 'price' => 1000,
                 'rating' => 4.8,
                 'category' => 'Beach',
-                'image' => $base . '/images/home/trending-destinations/%D8%B3%D9%81%D8%A7%D8%B1%D9%8A-%D8%AF%D9%87%D8%A8-%D8%A8%D9%8A%D8%AA%D8%B4-%D8%A8%D8%A7%D8%AC%D9%8A.png',
+                'image' => $base . '/api/kamet-images/dest_dahab',
             ],
         ];
 
