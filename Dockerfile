@@ -3,6 +3,7 @@ FROM php:8.2-cli
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
     git \
+    git-lfs \
     curl \
     libpng-dev \
     libonig-dev \
@@ -38,6 +39,9 @@ USER user
 
 # Fix git dubious ownership issue
 RUN git config --global --add safe.directory /app
+
+# Pull the actual binary images replacing the LFS text pointers
+RUN git lfs install && git lfs pull
 
 # Install dependencies
 RUN composer install --no-interaction --optimize-autoloader
