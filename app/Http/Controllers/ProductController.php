@@ -14,7 +14,7 @@ class ProductController extends Controller
             'description' => 'Original papyrus painting illustrating the Tree of Life. Hand-painted by local artists in Luxor.',
             'price' => 45.00,
             'category' => 'Art & Crafts',
-            'image' => 'https://upload.wikimedia.org/wikipedia/commons/4/4f/Ani_papyrus.jpg'
+            'image' => 'http://127.0.0.1:8000/api/kamet-images/shop_papyrus'
         ],
         [
             'id' => 2,
@@ -22,7 +22,7 @@ class ProductController extends Controller
             'description' => 'Hand-carved authentic alabaster statue of Queen Nefertiti from the West Bank of Luxor.',
             'price' => 85.00,
             'category' => 'Statues',
-            'image' => 'https://upload.wikimedia.org/wikipedia/commons/1/1f/Nofretete_Neues_Museum.jpg'
+            'image' => 'http://127.0.0.1:8000/api/kamet-images/shop_nefertiti'
         ],
         [
             'id' => 3,
@@ -30,7 +30,7 @@ class ProductController extends Controller
             'description' => 'A stunning museum-quality replica of the golden mask of King Tutankhamun, encrusted with semi-precious stones.',
             'price' => 250.00,
             'category' => 'Gifts',
-            'image' => 'https://upload.wikimedia.org/wikipedia/commons/d/df/Tutanchamun_Maske.jpg'
+            'image' => 'http://127.0.0.1:8000/api/kamet-images/shop_tut_mask'
         ],
         [
             'id' => 4,
@@ -38,7 +38,7 @@ class ProductController extends Controller
             'description' => 'Personalized sterling silver cartouche with your name written in ancient Egyptian hieroglyphics.',
             'price' => 120.00,
             'category' => 'Jewelry',
-            'image' => 'https://upload.wikimedia.org/wikipedia/commons/8/87/Oseirion%2C_Cartouche_of_Seti_I%2C_Egypt.jpg'
+            'image' => 'http://127.0.0.1:8000/api/kamet-images/shop_cartouche'
         ],
         [
             'id' => 5,
@@ -46,7 +46,7 @@ class ProductController extends Controller
             'description' => '100% genuine woven Egyptian cotton scarf. Soft, breathable, and culturally designed.',
             'price' => 35.00,
             'category' => 'Clothing',
-            'image' => 'https://images.unsplash.com/photo-1520006403909-838d6b92c22e?w=800&auto=format&fit=crop'
+            'image' => 'http://127.0.0.1:8000/api/kamet-images/shop_scarf'
         ],
         [
             'id' => 6,
@@ -54,7 +54,7 @@ class ProductController extends Controller
             'description' => 'Vibrantly colored, hand-woven Nubian basket directly from traditional artisans in Aswan.',
             'price' => 60.00,
             'category' => 'Art & Crafts',
-            'image' => 'https://upload.wikimedia.org/wikipedia/commons/4/48/Nubian_Basketry.jpg'
+            'image' => 'http://127.0.0.1:8000/api/kamet-images/shop_nubian_basket'
         ],
         [
             'id' => 7,
@@ -62,7 +62,7 @@ class ProductController extends Controller
             'description' => 'Exquisite basalt replica statue of Anubis, the ancient Egyptian god, crafted with authentic detailing.',
             'price' => 95.00,
             'category' => 'Statues',
-            'image' => 'https://upload.wikimedia.org/wikipedia/commons/9/9f/Anubis_statue_from_Tutankhamun_tomb.jpg'
+            'image' => 'http://127.0.0.1:8000/api/kamet-images/shop_anubis'
         ],
         [
             'id' => 8,
@@ -70,7 +70,7 @@ class ProductController extends Controller
             'description' => 'A curated selection of premium Egyptian spices including cumin, coriander, and authentic saffron.',
             'price' => 55.00,
             'category' => 'Gifts',
-            'image' => 'https://upload.wikimedia.org/wikipedia/commons/a/a2/Spices_in_an_Indian_market.jpg'
+            'image' => 'http://127.0.0.1:8000/api/kamet-images/shop_spice_box'
         ]
     ];
 
@@ -80,16 +80,25 @@ class ProductController extends Controller
         if ($products->isEmpty()) {
             foreach ($this->mockProducts as $mockProduct) {
                 Product::create([
-                    // DO NOT pass 'id' here or let it auto-increment, but since mock ID matches, it's safer to just insert
                     'name' => $mockProduct['name'],
                     'description' => $mockProduct['description'],
                     'price' => $mockProduct['price'],
                     'category' => $mockProduct['category'],
                     'image' => $mockProduct['image'],
-                    'stock' => 100 // default stock
+                    'stock' => 100
                 ]);
             }
-            $products = Product::all(); // Re-fetch after inserting
+            $products = Product::all();
+        } else {
+            // Force update existing DB rows if they contain broken unsplash/wikimedia links
+            foreach ($products as $p) {
+                if (str_contains($p->image, 'unsplash') || str_contains($p->image, 'wikimedia')) {
+                    $mockEquivalent = collect($this->mockProducts)->firstWhere('name', $p->name);
+                    if ($mockEquivalent) {
+                        $p->update(['image' => $mockEquivalent['image']]);
+                    }
+                }
+            }
         }
         return response()->json($products);
     }

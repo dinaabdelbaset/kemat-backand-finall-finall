@@ -7,6 +7,10 @@ use App\Models\Destination;
 use App\Models\Tour;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\BookingConfirmed;
+use App\Mail\AdminBookingAlert;
+use App\Services\WhatsAppService;
 
 class BookingController extends Controller
 {
@@ -27,6 +31,15 @@ class BookingController extends Controller
                     $image = $item->image;
                     $link = '/tours/' . $item->id;
                 }
+            } else if (str_contains($booking->item_type, 'food')) {
+                $isDelivery = str_contains($booking->item_type, 'delivery');
+                $title = $isDelivery ? '🍽️ Restaurant Order - Delivery' : '🍽️ Restaurant - Table Reservation';
+                $image = 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=600&auto=format&fit=crop';
+                $link = '/restaurants';
+            } else if ($booking->item_type == 'event') {
+                $title = '🎫 Event & Show Admission';
+                $image = '/events/event_hero_banner.png';
+                $link = '/events';
             } else if ($booking->item_type == 'attraction') {
                 // الحجوزات القادمة من الأماكن السياحية الساحلية (Attractions)
                 // تم برمجتها هنا مباشرة كحل سريع وفعّال لعرضها في المناقشة
@@ -77,11 +90,42 @@ class BookingController extends Controller
         $validated['status'] = 'confirmed';
 
         $booking = Booking::create($validated);
+        $bookingIdFormatted = 'BKG-' . $booking->id;
+
+        // Prepare data for the emails
+        $emailData = [
+            'booking_id' => $bookingIdFormatted,
+            'item_type' => $booking->item_type,
+            'item_id' => $booking->item_id,
+            'date_info' => $booking->date_info,
+            'guests' => $booking->guests,
+            'total_price' => $booking->total_price,
+            'name' => $request->user()->name,
+            'user_id' => $request->user()->id,
+        ];
+
+        try {
+            // 1. Send Email to the Customer
+            Mail::to($request->user()->email)->send(new BookingConfirmed($emailData));
+
+            // 2. Send Alerts to the Admins
+            $adminEmails = ['dinaabdelbaset08@gmail.com', 'eslam.15963278@gmail.com'];
+            foreach ($adminEmails as $email) {
+                Mail::to($email)->send(new AdminBookingAlert($emailData));
+            }
+
+            // 3. Send WhatsApp Notification to Admins
+            $whatsappService = new WhatsAppService();
+            $whatsappService->sendAdminAlert($bookingIdFormatted, $booking->total_price);
+        } catch (\Exception $e) {
+            // Log the error but don't stop the booking process if emails fail
+            \Illuminate\Support\Facades\Log::error("Failed to send booking notifications: " . $e->getMessage());
+        }
 
         return response()->json([
             'success' => true,
             'message' => 'Booking confirmed',
-            'bookingId' => 'BKG-' . $booking->id
+            'bookingId' => $bookingIdFormatted
         ], 201);
     }
 

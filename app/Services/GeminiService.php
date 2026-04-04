@@ -26,34 +26,10 @@ class GeminiService
 
         $apiKey = trim($this->apiKey);
 
-        // Auto-detect the exact model name this specific API key is allowed to use
-        try {
-            $modelsResponse = Http::withoutVerifying()->get('https://generativelanguage.googleapis.com/v1beta/models?key=' . $apiKey);
-            $validModel = 'models/gemini-1.5-flash'; // default
-            
-            if ($modelsResponse->successful()) {
-                $models = collect($modelsResponse->json()['models'] ?? []);
-                $availableModels = $models->pluck('name')->toArray();
-                
-                // Fallback to the first available model that supports generateContent
-                if (in_array('models/gemini-1.5-flash', $availableModels)) {
-                    $validModel = 'models/gemini-1.5-flash';
-                } elseif (in_array('models/gemini-1.5-flash-latest', $availableModels)) {
-                    $validModel = 'models/gemini-1.5-flash-latest';
-                } elseif (in_array('models/gemini-pro', $availableModels)) {
-                    $validModel = 'models/gemini-pro';
-                } elseif (in_array('models/gemini-1.0-pro', $availableModels)) {
-                    $validModel = 'models/gemini-1.0-pro';
-                } elseif (count($availableModels) > 0) {
-                    $validModel = $availableModels[0];
-                }
-            } else {
-                 return "API Key Error: " . $modelsResponse->body();
-            }
-        } catch (\Exception $e) {
-             return "Model Fetch Error: " . $e->getMessage();
-        }
-
+        // Found the issue: Gemini 1.5 is stripped from the user's tier, and 2.x versions have 0 quota.
+        // We will use the universal 'models/gemini-flash-latest' which is supported by their key.
+        $validModel = 'models/gemini-flash-latest';
+        
         $url = 'https://generativelanguage.googleapis.com/v1beta/' . $validModel . ':generateContent?key=' . $apiKey;
 
         $payload = [
