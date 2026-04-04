@@ -19,20 +19,20 @@ class HomepageSeeder extends Seeder
         Bazaar::truncate();
         Deal::truncate();
 
-        $baseUrl = url('/images/home/trending-destinations');
-        
+        $baseUrl = url('/images/home_assets');
+
         // --- 1. Seed Destinations ---
         $destinations = [
-            ['title' => 'Cairo', 'src' => "$baseUrl/download%20(1)c.ario.png", 'alt' => 'Cairo', 'tours' => 1200],
-            ['title' => 'Alexandria', 'src' => "$baseUrl/Alx.png", 'alt' => 'Alexandria', 'tours' => 610],
-            ['title' => 'Luxor', 'src' => "$baseUrl/luxor.png", 'alt' => 'Luxor', 'tours' => 850],
-            ['title' => 'Sharm El.S', 'src' => "$baseUrl/foto_egipet_sharm_el_shejh_foto_1.jpg-1024x687.png", 'alt' => 'Sharm El-Sheikh', 'tours' => 1540],
-            ['title' => 'Hurghada', 'src' => "$baseUrl/Hurghada_R03.jpg", 'alt' => 'Hurghada', 'tours' => 1390],
-            ['title' => 'Aswan', 'src' => "$baseUrl/aswan.png", 'alt' => 'Aswan', 'tours' => 720],
-            ['title' => 'Marsa Alam', 'src' => "$baseUrl/marsallm.png", 'alt' => 'Marsa Alam', 'tours' => 540],
-            ['title' => 'Dahab', 'src' => "$baseUrl/سفاري-دهب-بيتش-باجي.png", 'alt' => 'Dahab', 'tours' => 980],
-            ['title' => 'Marsa Matruh', 'src' => "$baseUrl/download%20(1)c.ario.png", 'alt' => 'Marsa Matruh', 'tours' => 460],
-            ['title' => 'New Capital', 'src' => "$baseUrl/download%20(1)c.ario.png", 'alt' => 'New Capital', 'tours' => 320],
+            ['title' => 'Cairo', 'src' => "$baseUrl/cairo.jpg", 'alt' => 'Cairo', 'tours' => 1200],
+            ['title' => 'Alexandria', 'src' => "$baseUrl/alex.jpg", 'alt' => 'Alexandria', 'tours' => 610],
+            ['title' => 'Luxor', 'src' => "$baseUrl/luxor.jpg", 'alt' => 'Luxor', 'tours' => 850],
+            ['title' => 'Sharm El.S', 'src' => "$baseUrl/sharm.jpg", 'alt' => 'Sharm El-Sheikh', 'tours' => 1540],
+            ['title' => 'Hurghada', 'src' => "$baseUrl/hurghada.jpg", 'alt' => 'Hurghada', 'tours' => 1390],
+            ['title' => 'Aswan', 'src' => "$baseUrl/aswan.jpg", 'alt' => 'Aswan', 'tours' => 720],
+            ['title' => 'Marsa Alam', 'src' => "$baseUrl/marsa_alam.jpg", 'alt' => 'Marsa Alam', 'tours' => 540],
+            ['title' => 'Dahab', 'src' => "$baseUrl/dahab.jpg", 'alt' => 'Dahab', 'tours' => 980],
+            ['title' => 'Marsa Matruh', 'src' => "$baseUrl/matruh.jpg", 'alt' => 'Marsa Matruh', 'tours' => 460],
+            ['title' => 'New Capital', 'src' => "$baseUrl/new_cap.jpg", 'alt' => 'New Capital', 'tours' => 320],
         ];
 
         foreach ($destinations as $dest) {
@@ -43,7 +43,7 @@ class HomepageSeeder extends Seeder
         $packages = [
             [
                 'title' => 'Siwa Oasis Safari & Camping Adventure',
-                'image' => "$baseUrl/marsallm.png", // reuse image
+                'image' => "$baseUrl/marsa_alam.jpg", // reuse image
                 'alt' => 'Siwa Oasis Safari',
                 'tag' => 'Adventure',
                 'date' => 'November 15 2024',
@@ -58,7 +58,7 @@ class HomepageSeeder extends Seeder
             ],
             [
                 'title' => 'Luxor & Aswan Nile Cruise Magic',
-                'image' => "$baseUrl/download%20(1)c.ario.png",
+                'image' => "$baseUrl/nile_cruise.jpg",
                 'alt' => 'Nile Cruise Magic',
                 'tag' => 'Historic',
                 'date' => 'October 10 2024',
@@ -73,7 +73,7 @@ class HomepageSeeder extends Seeder
             ],
             [
                 'title' => 'Sinai Trail & St. Catherine Monastery Hike',
-                'image' => "$baseUrl/سفاري-دهب-بيتش-باجي.png",
+                'image' => "$baseUrl/sinai_trail.jpg",
                 'alt' => 'Sinai Trail',
                 'tag' => 'Hiking',
                 'date' => 'December 05 2024',
@@ -97,42 +97,42 @@ class HomepageSeeder extends Seeder
             [
                 'title' => 'Khan el-Khalili',
                 'location' => 'Cairo, Egypt',
-                'image' => "$baseUrl/download%20(1)c.ario.png",
+                'image' => "$baseUrl/cairo.jpg",
                 'description' => 'A famous historic bazaar and souq in the center of Cairo. Master artisans craft beautiful jewelry, copper, and lanterns right before your eyes.',
                 'specialty' => ["Spices", "Handicrafts", "Jewelry"]
             ],
             [
                 'title' => 'Aswan Spice Market',
                 'location' => 'Aswan, Egypt',
-                'image' => "$baseUrl/Hurghada_R03.jpg",
+                'image' => "$baseUrl/hurghada.jpg",
                 'description' => 'A sensory explosion of colors and aromas. Best place to buy authentic Nubian spices, hibiscus tea, and natural perfumes.',
                 'specialty' => ["Spices", "Herbs", "Perfumes"]
             ],
             [
                 'title' => 'Luxor Tourist Souq',
                 'location' => 'Luxor, Egypt',
-                'image' => "$baseUrl/luxor.png",
+                'image' => "$baseUrl/luxor.jpg",
                 'description' => 'Wander through lanes dedicated to alabaster statues, papyrus art, and traditional clothing near the glorious Luxor Temple.',
                 'specialty' => ["Alabaster", "Papyrus", "Cotton"]
             ],
             [
                 'title' => 'Sharm Old Market',
                 'location' => 'Sharm El-Sheikh',
-                'image' => "$baseUrl/foto_egipet_sharm_el_shejh_foto_1.jpg-1024x687.png",
+                'image' => "$baseUrl/sharm.jpg",
                 'description' => 'Also known as Sharm El Maya. Famous for its beautiful Sahaba Mosque, traditional herbs, essential oils, and local cafes.',
                 'specialty' => ["Oils", "Herbs", "Souvenirs"]
             ],
             [
                 'title' => 'Shali Market',
                 'location' => 'Siwa Oasis',
-                'image' => "$baseUrl/aswan.png",
+                'image' => "$baseUrl/aswan.jpg",
                 'description' => 'Shop for unique Siwan crafts, including deeply embroidered dresses, silver jewelry, and the world\'s best organic dates.',
                 'specialty' => ["Dates", "Olive Oil", "Silver"]
             ],
             [
                 'title' => 'Mansheya Market',
                 'location' => 'Alexandria, Egypt',
-                'image' => "$baseUrl/Alx.png",
+                'image' => "$baseUrl/alex.jpg",
                 'description' => 'A bustling coastal European-style square mixed with Egyptian charm. Discover local textiles, gold, and the famous Zan\'et El Setat alley.',
                 'specialty' => ["Textiles", "Gold", "Antiques"]
             ]
@@ -149,7 +149,7 @@ class HomepageSeeder extends Seeder
                 'icon' => '🍽️',
                 'title' => 'Hadramaut Mandi — حضرموت مندي',
                 'locations' => 'Nasr City, Cairo',
-                'image' => "$baseUrl/download%20(1)c.ario.png",
+                'image' => "$baseUrl/mandi.jpg",
                 'price' => 'From $15',
                 'rating' => 4.8,
                 'color' => '#E74C3C',
@@ -161,7 +161,7 @@ class HomepageSeeder extends Seeder
                 'icon' => '🏨',
                 'title' => 'Kempinski Nile Hotel — كمبينسكي',
                 'locations' => 'Garden City, Cairo',
-                'image' => "$baseUrl/download%20(1)c.ario.png",
+                'image' => "$baseUrl/hotel_nile.jpg",
                 'price' => 'From $180/night',
                 'rating' => 4.9,
                 'color' => '#3498DB',
@@ -173,7 +173,7 @@ class HomepageSeeder extends Seeder
                 'icon' => '🏛️',
                 'title' => 'Grand Egyptian Museum — المتحف الكبير',
                 'locations' => 'Giza Plateau, Cairo',
-                'image' => "$baseUrl/luxor.png",
+                'image' => "$baseUrl/museum.jpg",
                 'price' => 'From $20',
                 'rating' => 4.9,
                 'color' => '#D4AF37',
@@ -185,7 +185,7 @@ class HomepageSeeder extends Seeder
                 'icon' => '🎪',
                 'title' => 'Sound & Light Show — الصوت والضوء',
                 'locations' => 'Giza Pyramids, Cairo',
-                'image' => "$baseUrl/download%20(1)c.ario.png",
+                'image' => "$baseUrl/sound_light.jpg",
                 'price' => 'From $25',
                 'rating' => 4.6,
                 'color' => '#9B59B6',
@@ -197,7 +197,7 @@ class HomepageSeeder extends Seeder
                 'icon' => '🏜️',
                 'title' => 'Siwa Oasis Safari — سفاري سيوة',
                 'locations' => 'Siwa Oasis, Western Desert',
-                'image' => "$baseUrl/marsallm.png",
+                'image' => "$baseUrl/marsa_alam.jpg",
                 'price' => 'From $85',
                 'rating' => 4.8,
                 'color' => '#E67E22',
@@ -209,7 +209,7 @@ class HomepageSeeder extends Seeder
                 'icon' => '🤿',
                 'title' => 'Red Sea Diving — غوص البحر الأحمر',
                 'locations' => 'Sharm El Sheikh, Red Sea',
-                'image' => "$baseUrl/Hurghada_R03.jpg",
+                'image' => "$baseUrl/diving.jpg",
                 'price' => 'From $55',
                 'rating' => 4.9,
                 'color' => '#1ABC9C',
@@ -221,7 +221,7 @@ class HomepageSeeder extends Seeder
                 'icon' => '⛵',
                 'title' => 'MS Esplanade Cruise — كروز إسبلاناد',
                 'locations' => 'Luxor → Edfu → Kom Ombo → Aswan',
-                'image' => "$baseUrl/aswan.png",
+                'image' => "$baseUrl/esplanade.jpg",
                 'price' => 'From $350',
                 'rating' => 4.9,
                 'color' => '#05073C',
