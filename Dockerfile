@@ -30,8 +30,14 @@ WORKDIR /app
 # Copy application files
 COPY --chown=user:user . .
 
+# Fix permissions of the /app directory itself
+RUN chown -R user:user /app
+
 # Switch to the new user
 USER user
+
+# Fix git dubious ownership issue
+RUN git config --global --add safe.directory /app
 
 # Install dependencies
 RUN composer install --no-interaction --optimize-autoloader
