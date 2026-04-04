@@ -130,6 +130,8 @@ Route::get('/content/why-choose-us', [ContentController::class, 'getWhyChooseUs'
 Route::get('/content/footer', [ContentController::class, 'getFooterData']);
 Route::get('/content/attractions', [ContentController::class, 'getAttractions']);
 Route::get('/content/attractions/{slug}', [ContentController::class, 'getAttraction']);
+Route::get('/content/home-marquee', [ContentController::class, 'getHomeMarquee']);
+Route::get('/content/activity-filters', [ContentController::class, 'getActivityFilters']);
 
 // ===== مسارات الدعم والتواصل (Support & Newsletter) =====
 Route::post('/support/contact', [SupportController::class, 'contact']);

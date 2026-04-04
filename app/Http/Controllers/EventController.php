@@ -37,7 +37,7 @@ class EventController extends Controller
                 'time' => '7:30 PM',
                 'price' => 350,
                 'category' => 'Show',
-                'image' => 'http://localhost:8000/api/kamet-images/pyramids',
+                'image' => url('/api/kamet-images/pyramids'),
                 'rating' => 4.8,
             ],
             [
@@ -49,7 +49,7 @@ class EventController extends Controller
                 'time' => '8:00 PM',
                 'price' => 0,
                 'category' => 'Cultural',
-                'image' => 'http://localhost:8000/api/kamet-images/dervishes',
+                'image' => url('/api/kamet-images/dervishes'),
                 'rating' => 4.9,
             ],
             [
@@ -61,7 +61,7 @@ class EventController extends Controller
                 'time' => '6:00 PM',
                 'price' => 500,
                 'category' => 'Music',
-                'image' => 'http://localhost:8000/api/kamet-images/jazz',
+                'image' => url('/api/kamet-images/jazz'),
                 'rating' => 4.7,
             ],
             [
@@ -73,7 +73,7 @@ class EventController extends Controller
                 'time' => '8:00 PM',
                 'price' => 1200,
                 'category' => 'Opera',
-                'image' => 'http://localhost:8000/api/kamet-images/opera',
+                'image' => url('/api/kamet-images/opera'),
                 'rating' => 4.9,
             ],
             [
@@ -85,7 +85,7 @@ class EventController extends Controller
                 'time' => '9:00 PM',
                 'price' => 800,
                 'category' => 'Music',
-                'image' => 'http://localhost:8000/api/kamet-images/edm',
+                'image' => url('/api/kamet-images/edm'),
                 'rating' => 4.5,
             ],
             [
@@ -97,7 +97,7 @@ class EventController extends Controller
                 'time' => '10:00 AM',
                 'price' => 50,
                 'category' => 'Cultural',
-                'image' => 'http://localhost:8000/api/kamet-images/book',
+                'image' => url('/api/kamet-images/book'),
                 'rating' => 4.3,
             ],
         ];

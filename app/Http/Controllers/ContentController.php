@@ -374,4 +374,35 @@ class ContentController extends Controller
         ];
         foreach ($faqs as $faq) { Faq::create($faq); }
     }
+
+    public function getHomeMarquee()
+    {
+        return response()->json([
+            'cities1' => ["Cairo", "Luxor", "Aswan", "Sharm El-Sheikh", "Hurghada", "Alexandria", "Marsa Alam", "Dahab"],
+            'cities2' => ["Dahab", "Marsa Alam", "Alexandria", "Hurghada", "Sharm El-Sheikh", "Aswan", "Luxor", "Cairo"]
+        ]);
+    }
+
+    public function getActivityFilters()
+    {
+        return response()->json([
+            'categories' => [
+                ['id' => 'all', 'name' => 'All Activities', 'count' => 12],
+                ['id' => 'outdoor', 'name' => 'Outdoor Activities', 'count' => 3],
+                ['id' => 'boat', 'name' => 'Boat Tours', 'count' => 4],
+                ['id' => 'water', 'name' => 'Water Activities', 'count' => 2],
+                ['id' => 'cultural', 'name' => 'Cultural Tours', 'count' => 3],
+            ],
+            'topPicks' => [
+                ['id' => 'free-cancellation', 'label' => 'Free Cancellation'],
+                ['id' => 'best-seller', 'label' => 'Best Seller']
+            ],
+            'sortBy' => [
+                ['id' => 'recommended', 'label' => 'Recommended'],
+                ['id' => 'price-low', 'label' => 'Price: Low to High'],
+                ['id' => 'price-high', 'label' => 'Price: High to Low'],
+                ['id' => 'rating', 'label' => 'Highest Rated']
+            ]
+        ]);
+    }
 }
