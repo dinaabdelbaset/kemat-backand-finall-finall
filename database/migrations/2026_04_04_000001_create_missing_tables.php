@@ -37,7 +37,7 @@ return new class extends Migration
                 $table->string('duration')->nullable();
                 $table->string('departure_time')->nullable();
                 $table->string('image')->nullable();
-                $table->float('rating', 2, 1)->default(0);
+                $table->decimal('rating', 2, 1)->default(0);
                 $table->timestamps();
             });
         }
@@ -123,7 +123,7 @@ return new class extends Migration
                 $table->json('gallery')->nullable();
                 $table->decimal('price_range_min', 10, 2)->default(0);
                 $table->decimal('price_range_max', 10, 2)->default(0);
-                $table->float('rating', 2, 1)->default(0);
+                $table->decimal('rating', 2, 1)->default(0);
                 $table->integer('reviews_count')->default(0);
                 $table->string('opening_hours')->nullable();
                 $table->json('features')->nullable();
@@ -145,7 +145,7 @@ return new class extends Migration
                 $table->string('category')->nullable();
                 $table->string('image')->nullable();
                 $table->json('gallery')->nullable();
-                $table->float('rating', 2, 1)->default(0);
+                $table->decimal('rating', 2, 1)->default(0);
                 $table->timestamps();
             });
         }
@@ -162,7 +162,7 @@ return new class extends Migration
                 $table->json('gallery')->nullable();
                 $table->decimal('ticket_price', 10, 2)->default(0);
                 $table->string('opening_hours')->nullable();
-                $table->float('rating', 2, 1)->default(0);
+                $table->decimal('rating', 2, 1)->default(0);
                 $table->integer('reviews_count')->default(0);
                 $table->json('highlights')->nullable();
                 $table->timestamps();
@@ -180,7 +180,7 @@ return new class extends Migration
                 $table->decimal('price', 10, 2)->default(0);
                 $table->string('image')->nullable();
                 $table->json('gallery')->nullable();
-                $table->float('rating', 2, 1)->default(0);
+                $table->decimal('rating', 2, 1)->default(0);
                 $table->json('includes')->nullable();
                 $table->string('difficulty')->default('Easy');
                 $table->timestamps();
