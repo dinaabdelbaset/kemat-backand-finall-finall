@@ -15,7 +15,14 @@ return new class extends Migration
         Schema::create('destinations', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('src');
+            $table->text('description')->nullable();
+            $table->string('type')->nullable();
+            $table->string('location')->nullable();
+            $table->integer('price')->default(0);
+            $table->float('rating')->default(0.0);
+            $table->string('category')->nullable();
+            $table->string('image')->nullable();
+            $table->string('src')->nullable();
             $table->string('alt')->nullable();
             $table->integer('tours')->default(0);
             $table->timestamps();
@@ -60,7 +67,7 @@ return new class extends Migration
             $table->string('locations')->nullable();
             $table->string('image');
             $table->string('price')->nullable();
-            $table->float('rating', 2, 1)->default(0.0);
+            $table->float('rating')->default(0.0);
             $table->string('color')->nullable();
             $table->string('link')->nullable();
             $table->json('items')->nullable();
