@@ -47,12 +47,22 @@ class HotelSeeder extends Seeder
         ];
 
         $images = [
-            'https://images.unsplash.com/photo-1534008897995-17a9d4999b1d?auto=format&fit=crop&w=800&q=80',
-            'https://images.unsplash.com/photo-1522066898748-18e3100e0004?auto=format&fit=crop&w=800&q=80',
-            'https://images.unsplash.com/photo-1574675681023-4556ca6bf414?auto=format&fit=crop&w=800&q=80',
-            'https://images.unsplash.com/photo-1588616149176-8f2c3eb76ad4?auto=format&fit=crop&w=800&q=80',
-            'https://images.unsplash.com/photo-1581452936780-fbcdaebae183?auto=format&fit=crop&w=800&q=80',
-            'https://images.unsplash.com/photo-1583483955615-5eab38cdae78?auto=format&fit=crop&w=800&q=80'
+            '/images/hotels/siwa.png',
+            '/images/hotels/pyramids.png',
+            '/images/hotels/redsea.png',
+            '/images/hotels/luxor.png',
+            '/images/hotels/aswan.png',
+            '/images/hotels/sharm_bungalows.png',
+            '/images/hotels/cairo_boutique.png',
+            '/images/hotels/cairo_heritage.png',
+            '/images/hotels/alex.png',
+            '/images/hotels/aswan_cruise.png',
+            '/images/hotels/desert.png',
+            '/images/hotels/luxor_sunset.png',
+            '/images/hotels/marsa_lodge.png',
+            '/images/hotels/matrouh.png',
+            '/images/hotels/nile.png',
+            '/images/hotels/north_coast.png'
         ];
 
         // Placeholder 3D model for AR view

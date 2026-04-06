@@ -16,9 +16,9 @@ if (!is_dir($transportDir)) {
 }
 
 $aiImages = [
-    'bus' => 'C:\\Users\\Technologist\\.gemini\\antigravity\\brain\\5eb38633-e730-423c-9a49-2fa803feb37e\\luxury_tourist_bus_1775498730279.png',
-    'van' => 'C:\\Users\\Technologist\\.gemini\\antigravity\\brain\\5eb38633-e730-423c-9a49-2fa803feb37e\\luxury_tourist_van_1775498759877.png',
-    'car' => 'C:\\Users\\Technologist\\.gemini\\antigravity\\brain\\5eb38633-e730-423c-9a49-2fa803feb37e\\premium_tourist_car_1775498781544.png'
+    'bus' => 'C:\\Users\\Technologist\\.gemini\\antigravity\\brain\\5eb38633-e730-423c-9a49-2fa803feb37e\\luxury_bus_interior_1775499744951.png',
+    'van' => 'C:\\Users\\Technologist\\.gemini\\antigravity\\brain\\5eb38633-e730-423c-9a49-2fa803feb37e\\luxury_van_exterior_1775499769874.png',
+    'car' => 'C:\\Users\\Technologist\\.gemini\\antigravity\\brain\\5eb38633-e730-423c-9a49-2fa803feb37e\\premium_car_travel_1775499794252.png'
 ];
 
 foreach ($aiImages as $type => $path) {
