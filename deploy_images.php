@@ -23,7 +23,11 @@ $aiImages = [
 
 foreach ($aiImages as $type => $path) {
     if (file_exists($path)) {
-        copy($path, "$transportDir/$type.png");
+        $destFile = $transportDir . '/' . $type . '.png';
+        if (is_dir($destFile)) {
+            rmdir($destFile); // Just in case it was created as a directory by mistake
+        }
+        copy($path, $destFile);
         echo "Copied $type.png\n";
     }
 }
