@@ -156,21 +156,44 @@ Route::middleware('auth:sanctum')->group(function () {
 
 // ===== One-time image setup route =====
 // ===== Run migrations from browser =====
+// ===== Run fresh migrations + seeding =====
 Route::get('/run-migrate', function () {
     try {
-        \Illuminate\Support\Facades\Artisan::call('migrate', ['--force' => true]);
+        \Illuminate\Support\Facades\Artisan::call('migrate:fresh', ['--seed' => true, '--force' => true]);
         $output = \Illuminate\Support\Facades\Artisan::output();
-        
-        $tables = \Illuminate\Support\Facades\DB::select("SHOW TABLES");
-        
-        return response()->json([
-            'status' => 'done', 
-            'output' => $output,
-            'tables' => $tables,
-        ]);
+        return response()->json(['status' => 'done', 'output' => $output]);
     } catch (\Exception $e) {
         return response()->json(['error' => $e->getMessage()], 500);
     }
+});
+
+// ===== Fix hotel images to use working Unsplash URLs =====
+Route::get('/fix-hotel-images', function () {
+    $images = [
+        'https://images.unsplash.com/photo-1534008897995-17a9d4999b1d?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1522066898748-18e3100e0004?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1574675681023-4556ca6bf414?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1588616149176-8f2c3eb76ad4?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1581452936780-fbcdaebae183?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1583483955615-5eab38cdae78?auto=format&fit=crop&w=800&q=80',
+    ];
+    
+    $count = 0;
+    \App\Models\Hotel::chunk(100, function ($hotels) use ($images, &$count) {
+        foreach ($hotels as $hotel) {
+            // Only fix hotels with broken local paths
+            if (str_starts_with($hotel->image ?? '', '/hotels/') || str_starts_with($hotel->image ?? '', '/')) {
+                $img = $images[$count % count($images)];
+                $hotel->update([
+                    'image' => $img,
+                    'gallery' => [$img, $images[($count+1) % count($images)], $images[($count+2) % count($images)]],
+                ]);
+                $count++;
+            }
+        }
+    });
+    
+    return response()->json(['status' => 'done', 'fixed' => $count . ' hotels updated']);
 });
 
 Route::get('/setup-images', function () {
